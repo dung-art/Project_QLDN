@@ -1,0 +1,19 @@
+package com.WebOfNVD.Product.Dto;
+
+import com.WebOfNVD.Common.Response.CreateSuccessResponse;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CreateProductResponse<T> extends CreateSuccessResponse<T> {
+
+	private static final long serialVersionUID = 1L;
+	private String message;
+
+	public CreateProductResponse(T t, String id, String message) {
+		super(t,id);
+		this.message=message;
+	}
+}

@@ -1,0 +1,5 @@
+package com.WebOfNVD.User.Dto.CustomerUser;
+
+public class ListCustomUserCode {
+
+}

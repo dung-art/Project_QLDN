@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+    <libraryInfo home="D:\JDK\Jdk 8\jdk 8u191\jre" version="1.8.0_191">
+        <bootpath>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\resources.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\rt.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\sunrsasign.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jsse.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jce.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\charsets.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jfr.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+    <libraryInfo home="D:\spring-tool-suite-4-4.13.1.RELEASE-e4.22.0-win32.win32.x86_64.self-extracting\sts-4.13.1.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.1.v20211116-1657" version="17.0.1"/>
+    <libraryInfo home="D:\JDK\Jdk 8\jdk 8u191\bin" version="1.8.0_191">
+        <bootpath>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\resources.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\rt.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\sunrsasign.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jsse.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jce.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\charsets.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jfr.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+    <libraryInfo home="D:\JDK\Jdk 8\jdk 8u191" version="1.8.0_191">
+        <bootpath>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\resources.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\rt.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\sunrsasign.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jsse.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jce.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\charsets.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\jfr.jar"/>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="D:\JDK\Jdk 8\jdk 8u191\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+</libraryInfos>

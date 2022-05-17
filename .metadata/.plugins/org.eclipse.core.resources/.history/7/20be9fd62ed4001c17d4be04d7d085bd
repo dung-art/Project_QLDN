@@ -1,0 +1,5 @@
+package com.WebOfNVD.User.Dto;
+
+public class CreateUserResponse {
+
+}

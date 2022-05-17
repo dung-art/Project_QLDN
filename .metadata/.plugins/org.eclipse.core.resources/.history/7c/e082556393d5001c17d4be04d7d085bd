@@ -1,0 +1,49 @@
+package com.WebOfNVD.Product.Dto.Image;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import javax.imageio.ImageIO;
+
+import com.googlecode.jmapper.annotations.JMapConversion;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class CreateImageRequest {
+	private String imageName;
+	private String pathImage;
+	
+    @JMapConversion(from={"imageData"}, to={"pathImage"})
+    public byte[] conversion(String pathImage) throws Exception{
+    try {
+		return	ConvertImagetoByte(pathImage);
+	} catch (Exception e) {
+		throw new Exception(e);
+	}
+    }
+	private byte[] ConvertImagetoByte(String pathImageFile) throws Exception {
+		BufferedImage bufferedImage = ImageIO.read(new File(pathImageFile));
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		ImageIO.write(bufferedImage, getFormatImage(pathImageFile), byteArrayOutputStream);
+		byte[] dataImage = byteArrayOutputStream.toByteArray();
+		return dataImage;
+	}
+	private String getFormatImage(String nameImage) throws Exception {
+		if (nameImage.trim().endsWith(".jpg")) {
+			return "jpg";
+		}
+		if (nameImage.trim().endsWith(".jpeg")) {
+			return "jpeg";
+		}
+		if (nameImage.trim().endsWith(".png")) {
+			return "png";
+		} else {
+			throw new Exception("Định dạng không có sẵn hoặc không được hỗ trợ!");
+		}
+	}
+}

@@ -1,0 +1,20 @@
+package com.WebOfNVD.User.Dto.CustomerUser;
+
+import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
+@AllArgsConstructor
+public class CreateCustomUserRequest {
+	private String customUserCode;
+	private String fullName;
+	private String userName;
+	private String identifyNumber;
+	private String address;
+	private LocalDateTime birthDate;
+	private String password;
+	private String pathImageUser;
+	private String description;
+}

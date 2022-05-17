@@ -1,0 +1,5 @@
+package com.WebOfNVD.User.Dto.PartnerUser;
+
+public class ListPartnerUserCode {
+
+}

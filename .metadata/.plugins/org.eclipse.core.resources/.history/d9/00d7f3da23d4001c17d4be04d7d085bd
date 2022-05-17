@@ -1,0 +1,18 @@
+package com.WebOfNVD.Common.Response;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class ListResponse<T> extends SuccessResponse{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private T data;
+}

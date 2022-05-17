@@ -1,0 +1,30 @@
+package com.WebOfNVD.User;
+
+import com.WebOfNVD.User.Dto.SystemUser.UpdateSystemUserRequest;
+import com.WebOfNVD.User.Entity.SystemUser;
+
+public class MapUser {
+
+	public static SystemUser getSystemUserFromUpdateUSer(UpdateSystemUserRequest request, SystemUser systemUser) {
+		if (request == null) {
+			return null;
+		}
+		if (request.getIdentifyNumber() != null) {
+			product.setDescription(request.getDescription());
+		}
+		if (request.getPathImage() != null) {
+			product.setIsMaterial(request.getIsMaterial());
+		}
+		if (request.getGroupUser() != null) {
+			product.setPathImage(request.getPathImage());
+		}
+		if (request.getRoleOriginSystemUser() != null) {
+			product.setPrice(request.getPrice());
+		}
+		if (request.getDescription() != null) {
+			product.setProducer(request.getProducer());
+		}
+		return systemUser;
+		
+	}
+}

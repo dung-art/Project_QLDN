@@ -1,0 +1,26 @@
+package com.WebOfNVD.Product.Map;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+
+import com.WebOfNVD.Product.Dto.ProductDto;
+import com.WebOfNVD.Product.Dto.UpdateProductRequest;
+import com.WebOfNVD.Product.Entity.Product;
+
+@Mapper
+public interface ProductMapper {
+@Mapping(target = "dateAdd" , ignore = true)
+Product getProductFromProductDto(ProductDto productDto);
+
+ProductDto getProductDtoFromProduct(Product product);
+
+@Mapping(target = "productCode" , ignore = true)
+@Mapping(target = "isDelete" , ignore = true)
+@Mapping(target = "userAdd" , ignore = true)
+@Mapping(target = "modifiedDate" , ignore = true)
+@Mapping(target = "modifiedUser" , ignore = true)
+@Mapping(target = "modifiedAction" , ignore = true)
+@Mapping(target = "dateAdd" , ignore = true)
+Product getProductFromUpdateProduct(Product product ,UpdateProductRequest request);
+}

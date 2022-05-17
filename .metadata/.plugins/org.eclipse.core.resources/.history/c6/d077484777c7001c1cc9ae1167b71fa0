@@ -1,0 +1,6 @@
+package com.WebOfNVD.Common.Entity;
+
+
+public class EntityBase {
+
+}

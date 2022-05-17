@@ -1,0 +1,10 @@
+package com.WebOfNVD.Common.Validate;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
+public class Validate {
+
+
+
+}

@@ -1,0 +1,99 @@
+package com.WebOfNVD.Product.Service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.WebOfNVD.Common.Response.SuccessResponse;
+import com.WebOfNVD.Product.Dto.CreateProductRequest;
+import com.WebOfNVD.Product.Dto.CreateProductResponse;
+import com.WebOfNVD.Product.Dto.ListProductCode;
+import com.WebOfNVD.Product.Dto.ProductDto;
+import com.WebOfNVD.Product.Dto.UpdateProductRequest;
+import com.WebOfNVD.Product.Entity.Product;
+import com.WebOfNVD.Product.Map.MapProduct;
+import com.WebOfNVD.Product.Repository.ProductRepo;
+import com.googlecode.jmapper.JMapper;
+
+@Transactional
+@Service
+public class ProductServiceImpl implements ProductService {
+	@Autowired
+	private ProductRepo productRepo;
+
+	private JMapper<ProductDto, Product> mapper = new JMapper<>(ProductDto.class, Product.class);
+	private JMapper<Product, CreateProductRequest> cJMapper = new JMapper<>(Product.class, CreateProductRequest.class);
+
+	@Override
+	public SuccessResponse create(CreateProductRequest request) throws Exception {
+		try {
+			Optional<Product> oProduct = productRepo.findById(request.getProductCode());
+			if (oProduct.isPresent()) {
+				CreateProductResponse createProductResponse = new CreateProductResponse(oProduct.get().getProductCode(),"Sản phẩm đã tồn tại !");
+				createProductResponse.setStatus(0);
+				return createProductResponse;
+			} else {
+				Product product = cJMapper.getDestination(request);
+				ProductDto productDto = mapper.getDestination(product);
+				productRepo.save(product);
+				return new CreateProductResponse(productDto.getProductCode(),"Thêm mới sản phẩm thành công !");			 
+			}
+		} catch (Exception e) {
+//			throw new Exception(e);
+		}
+		return null;
+	}
+
+	@Override
+	public List<ProductDto> findAll() {
+		List<Product> products = productRepo.findAllNoDelete();
+		List<ProductDto> productDtos = new ArrayList<>();
+		for (Product product : products) {
+			productDtos.add(mapper.getDestination(product));
+		}
+		return productDtos;
+	}
+
+	@Override
+	public SuccessResponse softDeleteProducts(ListProductCode productCodes) {
+		List<Product> products = productRepo.findAllById(productCodes.getProductCodes());
+		for (Product product : products) {
+			product.setIsDelete(true);
+		}
+		return new SuccessResponse();
+	}
+
+	@Override
+	public ProductDto updateAllField(String productCode, UpdateProductRequest request) throws Exception {
+		try {
+			Optional<Product> oProduct = productRepo.findById(productCode);
+			if (!oProduct.isPresent()) {
+				return null;
+			}
+			if (oProduct.get().getIsDelete()) {
+				return null;
+
+			} else {
+//				if(mapper.getDestination(oProduct.get())
+//						.equals(mapper.getDestination(MapProduct.getProductFromUpdateProduct(request, oProduct.get())))){
+//					throw new Exception("Bạn chưa sửa !");
+//				}
+				Product product = oProduct.get();
+				product = MapProduct.getProductFromUpdateProduct(request, product);
+				productRepo.save(product);
+				ProductDto dto = mapper.getDestination(product);
+				dto.setModifiedDate(LocalDateTime.now());
+				return dto;
+			}
+		} catch (Exception e) {
+//			throw new Exception(e);
+		}
+		return null;
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.WebOfNVD.Product.Ctrl;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import com.WebOfNVD.Common.Entity.EntityBase;
+
+public class UpdateField<T extends EntityBase, S> {
+
+	private S o2;
+	public S map(T t, S s) {
+		try {
+			Field[] tFields = t.getClass().getFields();
+			for (Field field : tFields) {
+//				field.setAccessible(true);
+				s.getClass().getField(field.getName()).set(s, field.get(t));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return s;
+	}
+	
+	
+}

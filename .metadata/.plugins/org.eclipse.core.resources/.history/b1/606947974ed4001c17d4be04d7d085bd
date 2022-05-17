@@ -1,0 +1,19 @@
+package com.WebOfNVD.User.Repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+
+import com.WebOfNVD.User.Entity.CustomUser;
+import com.WebOfNVD.User.Entity.SystemUser;
+
+
+
+public interface CustomUserRepo extends JpaRepository<CustomUser, String> , JpaSpecificationExecutor<CustomUser>{
+	@Query(value = "Select s from SystemUser s Where s.isDelete = false")
+	List<SystemUser> findAllNoDelete();
+	@Query(value = "Select s from SystemUser s Where s.isDelete = true")
+	List<SystemUser> findAllDeleted();
+}

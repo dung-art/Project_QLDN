@@ -1,0 +1,104 @@
+package com.WebOfNVD.Common.Convert;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+public class Convert {
+	public static byte[] ConvertImagetoByte(String pathImageFile) throws Exception {
+		BufferedImage bufferedImage = ImageIO.read(new File(pathImageFile));
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		ImageIO.write(bufferedImage, getFormatImage(pathImageFile), byteArrayOutputStream);
+		byte[] dataImage = byteArrayOutputStream.toByteArray();
+		return dataImage;
+	}
+
+	public static File ConvertBytetoImage(byte[] dataImage, String nameImage) throws Exception {
+		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(dataImage);
+		BufferedImage bufferedImage = ImageIO.read(byteArrayInputStream);
+		File fileImage = new File(nameImage);
+		ImageIO.write(bufferedImage, getFormatImage(nameImage), fileImage);
+		return fileImage;
+	}
+
+	public static String getFormatImage(String nameImage) throws Exception {
+		if (nameImage.endsWith(".jpg")) {
+			return "jpg";
+		}
+		if (nameImage.endsWith(".jpeg")) {
+			return "jpeg";
+		}
+		if (nameImage.endsWith(".png")) {
+			return "png";
+		} else {
+			throw new Exception("Định dạng không có sẵn hoặc không được hỗ trợ!");
+		}
+	}
+
+	public static String ConvertPassword(String password) throws NoSuchAlgorithmException {
+		MessageDigest pass = MessageDigest.getInstance("MD5");
+		byte[] pa = pass.digest(password.getBytes());
+		byte[] pas = pass.digest(pa);
+		String p = ConvertBytetoHex(pas);
+		return p;
+	}
+
+	public static String ConvertBytetoHex(byte[] data) {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < data.length; i++) {
+			sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+		}
+		return sb.toString();
+	}
+
+	public static String fomatLocalDateTime(LocalDateTime dateTime) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		return format.format(dateTime);
+	}
+	public static String fomatLocalDateTimetoStringDate(LocalDateTime dateTime) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		return format.format(dateTime);
+	}
+	public static String fomatTime(Date dateTime) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		return format.format(dateTime);
+	}
+	public static String fomatDate(Date dateTime) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		return format.format(dateTime);
+	}
+	public static Date fomatStringToDate(String dateTime) throws Exception {
+		try {
+			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateTime);
+			return date;
+		} catch (Exception e) {
+			throw new RuntimeException("giá trị truyền không đúng");
+		}
+	}
+	public static Date fomatStringTimeToDate(String dateTime) throws Exception {
+		try {
+			Date date = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(dateTime);
+			return date;
+		} catch (Exception e) {
+			throw new RuntimeException("giá trị truyền không đúng");
+		}
+	}
+	public static LocalDateTime fomatStringToLocalDateTime(String dateTime) throws Exception {
+		try {
+			DateTimeFormatter format = DateTimeFormatter.ofPattern ( "yyyy-MM-dd hh:mm:ss" );
+			LocalDateTime date = LocalDateTime.parse(dateTime, format);
+			return date;
+		} catch (Exception e) {
+			throw new RuntimeException("giá trị truyền không đúng");
+		}
+	}
+
+}

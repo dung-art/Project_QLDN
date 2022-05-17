@@ -1,0 +1,21 @@
+package com.WebOfNVD.User.Dto.CustomerUser;
+
+import java.time.LocalDateTime;
+
+import com.WebOfNVD.Common.Enum.GroupCustomUserEnum;
+
+public class UpdateCustomUserRequest {
+
+	private String fullName;
+
+	private String userName;
+
+	private String identifyNumber;
+
+	private String address;
+
+	private LocalDateTime birthDate;
+
+	private String pathImageUser;
+	
+}

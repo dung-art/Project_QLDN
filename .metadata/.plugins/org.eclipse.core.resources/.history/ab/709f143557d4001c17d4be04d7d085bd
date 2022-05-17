@@ -1,0 +1,25 @@
+package com.WebOfNVD.User.Dto.SystemUser;
+
+import java.time.LocalDateTime;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class UpdateSystemUserRequest {
+
+	private String identifyNumber;
+
+	private LocalDateTime birthDate;
+
+	private String pathImage;
+
+	private String roleOriginSystemUser;
+
+	private String groupUser;
+	
+	private String description;
+}

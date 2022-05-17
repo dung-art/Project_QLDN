@@ -1,0 +1,57 @@
+package com.WebOfNVD.Common.Checks;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Checks {
+	public static Boolean checkFormatDate(String dateTime) {
+		// định dạng dd/MM/yyyy
+		String dateTimeConvert = dateTime + " " + "00:00:00";
+		try {
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			LocalDateTime.parse(dateTimeConvert, format);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public static Boolean checkStringIsFormatDate(String dateTime) throws Exception {
+		try {
+			if (checkFormatDate(dateTime)) {
+				String a = dateTime.substring(0, 2);
+				String b = dateTime.substring(3, 5);
+				String c = dateTime.substring(6, 10);
+				if (isInteger(a) && isInteger(b) && isInteger(c)) {
+					Integer d = Integer.valueOf(a);
+					Integer e = Integer.valueOf(b);
+					Integer f = Integer.valueOf(c);
+					if (((e == 1 || e == 3 || e == 5 || e == 7 || e == 8 || e == 10 || e == 12) && d <= 31)
+							|| ((e == 4 || e == 6 || e == 9 || e == 11) && d <= 30)) {
+						return true;
+					} else {
+						if ((f % 100 != 0 && f % 4 == 0 && e == 2 && d <= 29)
+								|| (f % 100 != 0 && f % 4 != 0 && e == 2 && d <= 28)
+								|| (f % 400 == 0 && e == 2 && d <= 29)
+								|| (f % 100 == 0 && f % 400 != 0 && e == 2 && d <= 28)) {
+							return true;
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+		}
+		return false;
+	}
+
+	public static Boolean isInteger(String a) throws Exception {
+		try {
+			if (Integer.valueOf(a) instanceof Integer) {
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return false;
+	}
+}

@@ -1,0 +1,67 @@
+package com.WebOfNVD.User.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.WebOfNVD.Common.Response.CreateSuccessResponse;
+import com.WebOfNVD.Common.Response.FailResponse;
+import com.WebOfNVD.Common.Response.SuccessResponse;
+import com.WebOfNVD.User.Dto.CreateUserResponse;
+import com.WebOfNVD.User.Dto.CustomerUser.CreateCustomUserRequest;
+import com.WebOfNVD.User.Dto.CustomerUser.CustomUserDto;
+import com.WebOfNVD.User.Dto.CustomerUser.ListCustomUserCode;
+import com.WebOfNVD.User.Dto.CustomerUser.UpdateCustomUserRequest;
+import com.WebOfNVD.User.Entity.CustomUser;
+import com.WebOfNVD.User.Repo.CustomUserRepo;
+import com.googlecode.jmapper.JMapper;
+
+@Service
+@Transactional
+public class CustomUserServiceImpl implements CustomUserService {
+	@Autowired
+	CustomUserRepo customUserRepo;
+
+//	private JMapper<CustomUserDto, CustomUser> mapper = new JMapper<>(CustomUserDto.class, CustomUser.class);
+	private JMapper<CustomUser, CreateCustomUserRequest> cmapper = new JMapper<>(CustomUser.class,
+			CreateCustomUserRequest.class);
+
+	@Override
+	public SuccessResponse create(CreateCustomUserRequest request) {
+		try {
+			Optional<CustomUser> oSystemUser = customUserRepo.findById(request.getCustomUserCode());
+			if (oSystemUser.isPresent()) {
+				return new FailResponse("Thông tin về người dùng này đã tồn tại !");
+			} else {
+				CustomUser systemUser = cmapper.getDestination(request);
+				customUserRepo.save(systemUser);
+				return new CreateUserResponse(systemUser.getCustomUserCode(),
+						"Thêm mới tài khoản người dùng thành công !");
+			}
+		} catch (Exception e) {
+		}
+		return new FailResponse("Đã có lỗi xãy ra !");
+	}
+
+	@Override
+	public List<CustomUserDto> findAllCustomUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SuccessResponse softDeleteCustomUser(ListCustomUserCode customUserCodes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SuccessResponse updateAllField(String systemUserCode, UpdateCustomUserRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

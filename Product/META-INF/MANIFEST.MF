@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Product
+Bundle-SymbolicName: Product
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: Product
+Export-Package: com.WebOfNVD.Product,
+ com.WebOfNVD.Product.Config,
+ com.WebOfNVD.Product.Ctrl,
+ com.WebOfNVD.Product.Dto,
+ com.WebOfNVD.Product.Entity,
+ com.WebOfNVD.Product.Repository,
+ com.WebOfNVD.Product.Service

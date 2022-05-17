@@ -1,0 +1,15 @@
+package com.WebOfNVD.Product.Map;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import com.WebOfNVD.Product.Dto.ProductDto;
+import com.WebOfNVD.Product.Entity.Product;
+
+@Mapper
+public interface MapperP {
+@Mapping(target = "dateAdd" , ignore = true)
+Product getProductFromProductDto(ProductDto productDto);
+
+ProductDto getProductDtoFromProduct(Product product);
+
+}

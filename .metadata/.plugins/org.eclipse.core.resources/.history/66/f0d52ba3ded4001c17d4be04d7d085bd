@@ -1,0 +1,12 @@
+package com.WebOfNVD.User.Repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+
+import com.WebOfNVD.User.Entity.CustomUser.Address;
+
+@Repository
+public interface AddressRepo extends JpaRepository<Address, String> , JpaSpecificationExecutor<Address>{
+
+}

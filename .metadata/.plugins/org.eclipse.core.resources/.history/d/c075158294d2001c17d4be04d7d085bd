@@ -1,0 +1,13 @@
+package com.WebOfNVD.User.Service;
+
+import java.util.List;
+
+import com.WebOfNVD.User.Dto.PartnerUser.CreatePartnerUserRequest;
+import com.WebOfNVD.User.Dto.PartnerUser.PartnerUserDto;
+
+public interface PartnerUserService {
+	PartnerUserDto create(CreatePartnerUserRequest request);
+
+	List<PartnerUserDto> findAllPartnerUser();
+
+}

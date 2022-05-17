@@ -1,0 +1,14 @@
+package com.WebOfNVD.Product.Service;
+
+import java.io.File;
+
+import com.WebOfNVD.Common.Response.SuccessResponse;
+import com.WebOfNVD.Product.Dto.Image.CreateImageRequest;
+
+public interface ImageService {
+
+	SuccessResponse create(CreateImageRequest request);
+
+	File getOneImage(String id);
+
+}

@@ -1,0 +1,5 @@
+package com.WebOfNVD.Product.Service;
+
+public interface ImageService {
+
+}

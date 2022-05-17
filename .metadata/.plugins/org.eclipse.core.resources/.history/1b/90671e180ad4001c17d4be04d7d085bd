@@ -1,0 +1,27 @@
+package com.WebOfNVD.Common.Response;
+
+import javax.validation.constraints.NotNull;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CreateSuccessResponse<T> extends SuccessResponse {
+
+	private static final long serialVersionUID = 1L;
+
+	private String id;
+
+	public CreateSuccessResponse(T t, String id) {
+		if (t.equals(null)) {
+			this.setStatus(0);
+		}
+		this.id = id;
+	}
+
+	@Override
+	public void setStatus(@NotNull int status) {
+		super.setStatus(status);
+	}
+}

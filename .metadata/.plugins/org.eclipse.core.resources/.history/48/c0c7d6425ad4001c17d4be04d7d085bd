@@ -1,0 +1,21 @@
+package com.WebOfNVD.User.Dto.SystemUser;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class UpdateSystemUserRequest {
+
+	private String identifyNumber;
+
+	private String pathImage;
+
+	private String roleOriginSystemUser;
+
+	private String groupUser;
+	
+	private String description;
+}

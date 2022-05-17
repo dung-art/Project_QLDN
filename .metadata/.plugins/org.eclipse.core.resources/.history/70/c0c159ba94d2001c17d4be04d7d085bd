@@ -1,0 +1,32 @@
+package com.WebOfNVD.User.Ctrl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.WebOfNVD.Common.Response.CreateSuccessResponse;
+import com.WebOfNVD.User.Dto.SystemUser.CreateSystemUserRequest;
+import com.WebOfNVD.User.Dto.SystemUser.SystemUserDto;
+import com.WebOfNVD.User.Service.SystemUserService;
+
+@RestController
+@RequestMapping("/api/v1/users/system-user")
+@Validated
+@Transactional
+public class SystemUserCtrl {
+	@Autowired
+	private SystemUserService systemUserService;
+
+	@PostMapping
+	@ResponseStatus(HttpStatus.OK)
+	public CreateSuccessResponse create(@RequestBody CreateSystemUserRequest request) {
+		SystemUserDto cud = systemUserService.create(request);
+		return new CreateSuccessResponse(cud.getSystemUserCode());	
+	}
+}

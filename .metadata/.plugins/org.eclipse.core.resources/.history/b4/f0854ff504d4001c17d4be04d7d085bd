@@ -1,0 +1,25 @@
+package com.WebOfNVD.Common.Response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class CreateSuccessResponse<T> extends SuccessResponse{
+
+	private static final long serialVersionUID = 1L;
+
+	private String id;
+	private String message;
+	
+	public CreateSuccessResponse(String id,T t,String message) {
+		if(t.equals(null)) {
+		this.setStatus(0);
+		}
+		this.id=id;
+		this.message=message;
+		
+	}
+}

@@ -1,0 +1,19 @@
+package com.WebOfNVD.Product.Dto.Image;
+
+import java.time.LocalDateTime;
+
+import com.googlecode.jmapper.annotations.JGlobalMap;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JGlobalMap
+@AllArgsConstructor
+@NoArgsConstructor
+public class ImageDto {
+
+}

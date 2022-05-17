@@ -1,0 +1,58 @@
+package com.WebOfNVD.Product.Map;
+
+import com.WebOfNVD.Product.Dto.ProductDto;
+import com.WebOfNVD.Product.Dto.UpdateProductRequest;
+import com.WebOfNVD.Product.Entity.Product;
+
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public class MapProduct {
+	
+    public static Product getProductFromProductDto(ProductDto productDto) {
+        if ( productDto == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setIsDelete( productDto.getIsDelete() );
+        product.setModifiedAction( productDto.getModifiedAction() );
+        product.setModifiedDate( productDto.getModifiedDate() );
+        product.setModifiedUser( productDto.getModifiedUser() );
+        product.setUserAdd( productDto.getUserAdd() );
+        product.setDescription( productDto.getDescription() );
+        product.setIsMaterial( productDto.getIsMaterial() );
+        product.setPathImage( productDto.getPathImage() );
+        product.setPrice( productDto.getPrice() );
+        product.setProducer( productDto.getProducer() );
+        product.setProductCode( productDto.getProductCode() );
+        product.setProductName( productDto.getProductName() );
+        product.setProductType( productDto.getProductType() );
+        product.setSize( productDto.getSize() );
+        product.setWeight( productDto.getWeight() );
+
+        return product;
+    }
+    
+    @Override
+    public Product getProductFromUpdateProduct(UpdateProductRequest request, Product product) {
+        if ( request == null ) {
+            return null;
+        }
+
+        Product product1 = new Product();
+
+        product1.setDescription( request.getDescription() );
+        product1.setIsMaterial( request.getIsMaterial() );
+        product1.setPathImage( request.getPathImage() );
+        product1.setPrice( request.getPrice() );
+        product1.setProducer( request.getProducer() );
+        product1.setProductName( request.getProductName() );
+        product1.setProductType( request.getProductType() );
+        product1.setSize( request.getSize() );
+        product1.setWeight( request.getWeight() );
+
+        return product1;
+    }
+}

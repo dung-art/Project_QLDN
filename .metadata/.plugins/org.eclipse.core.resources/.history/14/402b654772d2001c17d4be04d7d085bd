@@ -1,0 +1,67 @@
+package com.WebOfNVD.Product.Ctrl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.WebOfNVD.Common.Response.CreateSuccessResponse;
+import com.WebOfNVD.Common.Response.SuccessResponse;
+import com.WebOfNVD.Product.Dto.CreateProductRequest;
+import com.WebOfNVD.Product.Dto.ProductDto;
+import com.WebOfNVD.Product.Dto.UpdateProductRequest;
+import com.WebOfNVD.Product.Dto.UpdateProductResponse;
+import com.WebOfNVD.Product.Service.ProductService;
+
+@RestController
+@Transactional
+@RequestMapping("/api/v1/products")
+public class ProductCtrl {
+@Autowired
+private ProductService productService;
+
+@PostMapping
+@ResponseStatus(HttpStatus.OK)
+public CreateSuccessResponse create(@RequestBody CreateProductRequest request) throws Exception{
+ProductDto productDto = productService.create(request);	
+	return new CreateSuccessResponse(productDto.getProductCode());	
+}
+@GetMapping("/all-product")
+@ResponseBody
+public List<ProductDto> findAll(){
+	return productService.findAll();
+}
+@GetMapping("/delete-products")
+@ResponseBody
+public SuccessResponse deleteProduct(@RequestParam List<String> productCodes) throws Exception{
+	return productService.softDeleteProducts(productCodes);
+}
+@PostMapping("/{id}/update-all")
+@ResponseStatus(HttpStatus.OK)
+public UpdateProductResponse updateAllField(@PathVariable("id") String productCode,@RequestBody UpdateProductRequest request) throws Exception {
+ProductDto productDto = productService.updateAllField(productCode,request);
+	return new UpdateProductResponse(productDto);	
+}
+//@PostMapping("/{id}/update-some-field")
+//@ResponseStatus(HttpStatus.OK)
+//public UpdateProductResponse updateSomeField(@PathVariable("id") String productCode,@RequestBody UpdateProductRequest request) throws Exception {
+//ProductDto productDto = productService.updateSomeField(productCode,request);
+//	return new UpdateProductResponse(productDto);	
+//}
+//@PostMapping("/hide-products")
+//@ResponseStatus(HttpStatus.OK)
+//public SuccessResponse updateSomeField(@RequestBody HideProductRequest request) throws Exception {
+//	return productService.hideProducts(request);
+//	 	
+//}
+}

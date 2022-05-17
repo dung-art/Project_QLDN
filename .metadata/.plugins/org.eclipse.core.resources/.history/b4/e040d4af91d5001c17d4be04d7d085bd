@@ -1,0 +1,14 @@
+package com.WebOfNVD.Product.Service;
+
+import com.WebOfNVD.Common.Response.SuccessResponse;
+import com.WebOfNVD.Product.Dto.Image.CreateImageRequest;
+
+public class ImageserviceImpl implements ImageService{
+
+	@Override
+	public SuccessResponse create(CreateImageRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

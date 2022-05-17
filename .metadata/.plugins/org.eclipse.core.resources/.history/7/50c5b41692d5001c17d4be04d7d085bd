@@ -1,0 +1,20 @@
+package com.WebOfNVD.Product.Service;
+
+import com.WebOfNVD.Common.Response.SuccessResponse;
+import com.WebOfNVD.Product.Dto.Image.CreateImageRequest;
+import com.WebOfNVD.Product.Entity.Image;
+import com.googlecode.jmapper.JMapper;
+
+public class ImageserviceImpl implements ImageService{
+
+	
+//	private JMapper<ImageDto, Image> mapper = new JMapper<>(ImageDto.class, Image.class);
+	private JMapper<Image, CreateImageRequest> mapper = new JMapper<>(Image.class, CreateImageRequest.class);
+	
+	@Override
+	public SuccessResponse create(CreateImageRequest request) {
+		Image image = mapper.getDestination(request);
+		return 
+	}
+
+}
